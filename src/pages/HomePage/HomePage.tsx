@@ -19,7 +19,7 @@ import { ProductRankingList, ReviewRankingList, RecipeRankingList } from '@/comp
 import { PATH } from '@/constants/path';
 import channelTalk from '@/service/channelTalk';
 
-const HomePage = () => {
+export const HomePage = () => {
   const { reset } = useQueryErrorResetBoundary();
 
   channelTalk.loadScript();
@@ -82,5 +82,3 @@ const HomePage = () => {
     </>
   );
 };
-
-export default HomePage;

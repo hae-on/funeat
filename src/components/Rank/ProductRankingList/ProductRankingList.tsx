@@ -15,6 +15,10 @@ const ProductRankingList = () => {
     gaEvent({ category: 'link', action: '상품 랭킹 링크 클릭', label: '랭킹' });
   };
 
+  if (!productRankings || !productRankings.products) {
+    return null;
+  }
+
   return (
     <ul className={container}>
       {productRankings.products.map(({ id, name, image, price }, index) => (
