@@ -30,9 +30,11 @@ export const HomePage = () => {
 
   return (
     <>
-      <section>
-        <Banner />
-      </section>
+      <Suspense fallback={null}>
+        <section>
+          <Banner />
+        </section>
+      </Suspense>
       <section className={categorySection}>
         <Link to={PATH.SEARCH}>
           <div className={searchRouterWrapper}>

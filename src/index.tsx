@@ -25,7 +25,12 @@ const initializeReactGA = () => {
 // prod에도 msw 모킹하도록 수정
 const main = async () => {
   const { worker } = await import('./mocks/browser');
-  await worker.start();
+  await worker.start({
+    serviceWorker: {
+      url: '/mockServiceWorker.js',
+    },
+    onUnhandledRequest: 'warn',
+  });
 };
 await main();
 
