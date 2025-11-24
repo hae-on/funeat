@@ -1,6 +1,6 @@
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { Suspense, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 import { ErrorBoundary, ErrorComponent, Loading } from '@/components/Common';
 import { Layout } from '@/components/Layout';
@@ -15,16 +15,17 @@ interface AppProps {
 const App = ({ hasLayout = false }: AppProps) => {
   const { reset } = useQueryErrorResetBoundary();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useRouteChangeTracker();
 
   useEffect(() => {
     const isRevisit = getLocalStorage('isRevisit');
 
-    if (!isRevisit) {
+    if (!isRevisit && location.pathname !== PATH.ONBOARDING) {
       navigate(PATH.ONBOARDING, { replace: true });
     }
-  }, [navigate]);
+  }, [navigate, location.pathname]);
 
   if (!hasLayout) {
     return (
