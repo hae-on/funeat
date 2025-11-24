@@ -22,7 +22,7 @@ const App = ({ hasLayout = false }: AppProps) => {
   useEffect(() => {
     const isRevisit = getLocalStorage('isRevisit');
 
-    if (!isRevisit && location.pathname !== PATH.ONBOARDING) {
+    if (!isRevisit && location.pathname === '/') {
       navigate(PATH.ONBOARDING, { replace: true });
     }
   }, [navigate, location.pathname]);
