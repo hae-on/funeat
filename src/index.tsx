@@ -24,18 +24,8 @@ const initializeReactGA = () => {
 
 // prod에도 msw 모킹하도록 수정
 const main = async () => {
-  try {
-    const { worker } = await import('./mocks/browser');
-    await worker.start({
-      serviceWorker: {
-        url: '/mockServiceWorker.js',
-      },
-      onUnhandledRequest: 'warn',
-    });
-    console.log('[MSW] Service worker started successfully');
-  } catch (error) {
-    console.error('[MSW] Failed to start service worker:', error);
-  }
+  const { worker } = await import('./mocks/browser');
+  await worker.start();
 };
 await main();
 
@@ -43,6 +33,8 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: false,
+      suspense: true,
+      networkMode: 'always',
     },
   },
 });

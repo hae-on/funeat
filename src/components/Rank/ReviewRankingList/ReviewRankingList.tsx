@@ -13,7 +13,9 @@ import { vars } from '@/styles/theme.css';
 import type { ReviewDetail } from '@/types/review';
 
 const ReviewRankingList = () => {
-  const { data } = useReviewRankingQuery();
+  const {
+    data: { reviews },
+  } = useReviewRankingQuery();
   const { isOpen, isClosing, handleOpenBottomSheet, handleCloseBottomSheet } = useBottomSheet();
 
   const [selectedReview, setSelectedReview] = useState<{ productId: number; review: ReviewDetail }>();
@@ -22,12 +24,6 @@ const ReviewRankingList = () => {
     handleOpenBottomSheet();
     setSelectedReview({ productId, review });
   };
-
-  if (!data || !data.reviews) {
-    return null;
-  }
-
-  const { reviews } = data;
 
   return (
     <>

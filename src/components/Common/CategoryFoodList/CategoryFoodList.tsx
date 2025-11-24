@@ -26,10 +26,6 @@ const imgSize = {
 const CategoryFoodList = ({ hasName = false, isCircular = false, location = 'home' }: CategoryFoodListProps) => {
   const { data: categories } = useCategoryFoodQuery();
 
-  if (!categories) {
-    return null;
-  }
-
   return (
     <div className={categoryFoodListWrapper}>
       {categories.map((category) => (

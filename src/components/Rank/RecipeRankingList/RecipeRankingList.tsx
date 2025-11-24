@@ -11,9 +11,7 @@ const RecipeRankingList = () => {
   const { data: recipeResponse } = useRecipeRankingQuery();
   const { gaEvent } = useGA();
 
-  if (!recipeResponse || !recipeResponse.recipes || recipeResponse.recipes.length === 0) {
-    return <p>아직 랭킹이 없어요!</p>;
-  }
+  if (recipeResponse.recipes.length === 0) return <p>아직 랭킹이 없어요!</p>;
 
   const handleRecipeRankingLinkClick = () => {
     gaEvent({ category: 'link', action: '꿀조합 랭킹 링크 클릭', label: '랭킹' });

@@ -6,11 +6,6 @@ import { useBannerQuery } from '@/hooks/queries/banner';
 
 const Banner = () => {
   const { data: banners } = useBannerQuery();
-
-  if (!banners) {
-    return null;
-  }
-
   const { link, image } = banners[Math.floor(Math.random() * banners.length)];
 
   if (!link) {

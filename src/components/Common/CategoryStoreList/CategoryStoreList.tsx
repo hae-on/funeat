@@ -15,10 +15,6 @@ const categoryType = CATEGORY_TYPE.STORE;
 const CategoryStoreList = ({ hasName = false, isCircular = false }: CategoryStoreListProps) => {
   const { data: categories } = useCategoryStoreQuery();
 
-  if (!categories) {
-    return null;
-  }
-
   return (
     <div className={categoryStoreListWrapper}>
       {categories.map((category) => (
